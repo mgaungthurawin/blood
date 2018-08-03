@@ -29,7 +29,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>Admin Panel</b>
+                <b>Donar Dashboard</b>
             </a>
 
             <!-- Header Navbar -->
