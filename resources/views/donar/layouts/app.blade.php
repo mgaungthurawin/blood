@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Admin</title>
+    <title>Donar</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -19,6 +19,29 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}">
     @yield('css')
+    <style type="text/css">
+        .skin-blue .main-header .logo {
+            background-color: #A52A2A;
+        }
+
+        .skin-blue .main-header .navbar {
+            background-color: #A52A2A;   
+        }
+
+        .skin-blue .main-header li.user-header {
+            background-color: #A52A2A;   
+        }
+
+        .skin-blue .main-header .navbar .sidebar-toggle:hover {
+            background-color: #A52A2A;
+        }
+
+        .skin-blue .main-header .logo:hover {
+            background-color: #A52A2A;
+        }
+
+    </style>
+    </style>
 </head>
 
 <body class="skin-blue sidebar-mini">
@@ -46,7 +69,7 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="{{ url('/images/user.png') }}"
+                                <img src="{{ url($donar->image) }}"
                                      class="user-image" alt="User Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{!! Auth::user()->name !!}</span>
@@ -54,7 +77,7 @@
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="{{ url('/images/user.png') }}"
+                                    <img src="{{ url($donar->image) }}"
                                          class="img-circle" alt="User Image"/>
                                     <p>
                                         {!! Auth::user()->name !!}
@@ -155,6 +178,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script src="{{asset('js/custom.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#location_id').select2();
+        });
+    </script>
 
     @yield('scripts')
 </body>

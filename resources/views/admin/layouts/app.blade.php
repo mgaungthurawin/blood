@@ -19,6 +19,29 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}">
     @yield('css')
+    <style>
+            
+        .skin-blue .main-header .logo {
+            background-color: #A52A2A;
+        }
+
+        .skin-blue .main-header .navbar {
+            background-color: #A52A2A;   
+        }
+
+        .skin-blue .main-header li.user-header {
+            background-color: #A52A2A;   
+        }
+
+        .skin-blue .main-header .navbar .sidebar-toggle:hover {
+            background-color: #A52A2A;
+        }
+
+        .skin-blue .main-header .logo:hover {
+            background-color: #A52A2A;
+        }
+
+    </style>
 </head>
 
 <body class="skin-blue sidebar-mini">

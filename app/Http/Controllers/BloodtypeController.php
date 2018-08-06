@@ -14,8 +14,13 @@ class BloodtypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->get('name')) {
+            $bloodtypes=BloodType::where('group', $request->get('name'))->paginate(10);
+            return view('admin.bloodtype.index', compact('bloodtypes'));    
+        }
+
         $bloodtypes = BloodType::orderby('id', 'DESC')->paginate(15);
         return view('admin.bloodtype.index', compact('bloodtypes'));
     }

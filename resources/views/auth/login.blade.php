@@ -34,6 +34,41 @@
 
 
 </head>
+<style type="text/css">
+        
+        .head {
+            color : #a52a2a;
+        }
+
+        .login-box {
+            border-style: solid;
+            border-color: #ffffff;
+        }
+
+        .login-page {
+            background: #a52a2a;   
+        }
+
+/*        .login-box-body {
+            background: #222d32;
+        }*/
+
+        b {
+            color : #a52a2a;
+        }
+        i {
+            color : #a52a2a;
+        }
+
+        .btn-primary {
+            background-color: #a52a2a;
+        }
+
+        .btn-primary:hover, .btn-primary:active, .btn-primary.hover {
+            background-color: #a52a2a;
+        }
+
+    </style>
 <body class="hold-transition login-page">
 <div class="login-box">
 

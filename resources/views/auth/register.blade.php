@@ -36,84 +36,117 @@
     <![endif]-->
     
 </head>
+<style type="text/css">
+        
+        .head {
+            color : #a52a2a;
+        }
+
+        .register-box {
+            border-style: solid;
+            border-color: #ffffff;
+        }
+
+        .register-page {
+            background: #a52a2a;   
+        }
+
+        /*.register-box-body {
+            background: #a52a2a;
+        }*/
+
+        b {
+            color : #a52a2a;
+        }
+        i {
+            color : #a52a2a;
+        }
+
+        .btn-primary {
+            background-color: #a52a2a;
+        }
+
+        .btn-primary:hover, .btn-primary:active, .btn-primary.hover {
+            background-color: #a52a2a;
+        }
+
+    </style>
 <body class="hold-transition register-page">
-    <div class="register-logo">
-        <b>Admin </b><i>Panal</i>
-    </div>
-<div class="register-box">
-
-    <div class="register-box-body">
-        <p class="login-box-msg">Register a new membership</p>
-
-        <form method="post" action="{{ url('/register') }}">
-
-            {!! csrf_field() !!}
-
-            <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="User Name">
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
-
-                @if ($errors->has('name'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                @endif
+    <div class="register-box">
+        <div class="register-box-body">
+            <div class="register-logo">
+                <b>Blood </b><i>Bank</i>
             </div>
 
-            <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <form method="post" action="{{ url('/register') }}">
 
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-            </div>
+                {!! csrf_field() !!}
 
-            <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" name="password" placeholder="Password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="User Name">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-                @if ($errors->has('password'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
-            </div>
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
+                </div>
 
-            <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
-                @if ($errors->has('password_confirmation'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                    </span>
-                @endif
-            </div>
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div>
 
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> I agree to the <a href="#">terms</a>
-                        </label>
+                <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+                    @if ($errors->has('password_confirmation'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox"> I agree to the <a href="#">terms</a>
+                            </label>
+                        </div>
                     </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                    </div>
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
-                </div>
-                <!-- /.col -->
-            </div>
-        </form>
+            </form>
 
-        <a href="{{ url('/admin/login') }}" class="text-center">I already have a membership</a>
+            <a href="{{ url('/login') }}" class="text-center">I already have a membership</a>
+        </div>
+        <!-- /.form-box -->
     </div>
-    <!-- /.form-box -->
-</div>
-<!-- /.register-box -->
+    <!-- /.register-box -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

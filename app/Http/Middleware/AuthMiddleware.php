@@ -17,7 +17,9 @@ class AuthMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::user()->user_type == 2) {
-            return redirect('donardashboard');
+
+            return redirect('profile');
+
         } else if(Auth::user()->user_type == 3) {
             return redirect('seekerdashboard');
         }

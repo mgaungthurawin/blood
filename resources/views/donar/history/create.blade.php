@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('donar.layouts.app')
 
 @section('content')
     <section class="content-header">

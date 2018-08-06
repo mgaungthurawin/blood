@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DonerHistory;
 use App\Models\BloodType;
+use App\Models\Doner;
+use App\Models\Location;
 use Flash;
 use Auth;
 
@@ -17,8 +19,13 @@ class DonerHistoryController extends Controller
      */
     public function index()
     {
-        $history = DonerHistory::orderby('id', 'DESC')->paginate(15);
-        return view('donar.history.index', compact('history'));
+        $user = Auth::user();
+        $donar = Doner::where('user_id', $user->id)->first();
+        $history = DonerHistory::join('locations', 'locations.id', 'donar_history.location_id')
+                        ->where('donar_history.user_id', $user->id)
+                        ->orderby('donar_history.id', 'DESC')->paginate(15);
+        // $history = DonerHistory::orderby('id', 'DESC')->paginate(15);
+        return view('donar.history.index', compact('history', 'donar'));
     }
 
     /**
@@ -28,8 +35,11 @@ class DonerHistoryController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+        $donar = Doner::where('user_id', $user->id)->first();
         $blood = BloodType::all();
-        return view('donar.history.create', compact('blood'));
+        $locations = Location::all();
+        return view('donar.history.create', compact('blood', 'donar', 'locations'));
     }
 
     /**
@@ -49,6 +59,7 @@ class DonerHistoryController extends Controller
 
         DonerHistory::create([
             'user_id' => Auth::user()->id,
+            'location_id' => $data['location_id'],
             'group' => $blood->group,
             'type' => $blood->type,
             'quantity' => $data['quantity'],
@@ -79,9 +90,12 @@ class DonerHistoryController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
+        $donar = Doner::where('user_id', $user->id)->first();
+
         $blood = BloodType::all();
-        $donar = DonerHistory::find($id);
-        return view('donar.history.edit', compact('blood', 'donar'));
+        $donarhistory = DonerHistory::find($id);
+        return view('donar.history.edit', compact('donarhistory','blood', 'donar'));
     }
 
     /**

@@ -16,3 +16,12 @@
         </span>
     @endif
 </div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('location_id', 'Location:') !!} <span class="text-danger">*</span>
+    <select id="location_id" name="location_id" class="form-control">
+        @foreach($locations as $location)
+            <option value="{{$location->id}}">{{$location->name}}</option>
+        @endforeach
+    </select>
+</div>

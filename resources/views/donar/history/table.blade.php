@@ -3,6 +3,7 @@
         <th>Blood Group</th>
         <th>Blood Type</th>
         <th>Blood Quantity</th>
+        <th>Location</th>
         <th>Donated Date</th>
         <th colspan="3">Action</th>
     </thead>
@@ -12,6 +13,7 @@
             <td>{!! $h->group !!}</td>
             <td>{!! $h->type !!}</td>
             <td>{!! $h->quantity !!}</td>
+            <td>{!! $h->name !!}</td>
             <td>{!! $h->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['donarhistory.destroy', $h->id], 'method' => 'delete']) !!}

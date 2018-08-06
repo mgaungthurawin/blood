@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('donar.layouts.app')
 
 @section('content')
     <section class="content-header">
@@ -12,7 +12,7 @@
             <div class="box-body">
             
                 <div class="row">
-                {!! Form::model($donar, ['route' => ['donarhistory.update', $donar->id], 'method' => 'patch']) !!}
+                {!! Form::model($donarhistory, ['route' => ['donarhistory.update', $donar->id], 'method' => 'patch']) !!}
 
                     @include('donar.history.fields')
 
