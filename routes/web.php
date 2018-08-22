@@ -22,6 +22,10 @@ Route::get('/info', function () {
 Route::get('/donar', 'Donar\DonarController@index');
 Route::post('/donarRegister', 'Donar\DonarController@register');
 Route::get('/seeker', 'Seeker\SeekerController@index');
+Route::get('/bloodrequested', 'Seeker\SeekerController@requested');
+Route::post('/bloodrequested', 'Seeker\SeekerController@login');
+Route::get('/upgrade/{id}', 'Seeker\SeekerController@upgrade');
+Route::get('/upgradesuccess', 'Seeker\SeekerController@upgradesuccess');
 
 Route::get('/profile', 'Donar\DonarController@profile');
 Route::get('/editprofile', 'Donar\DonarController@editprofile');

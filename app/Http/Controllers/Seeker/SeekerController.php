@@ -62,6 +62,39 @@ class SeekerController extends Controller
     public function requestsuccess() {
     	return view('success');
     }
+
+    public function requested() {
+        return view('seeker.seekerlogin');
+    }
+
+    public function login(Request $request) {
+        $row = Seeker::where('email', $request->email)->first();
+        if (!$row) {
+            // To do
+        }
+
+        $detail = Seeker::join('seeker_request', 'seekers.id', 'seeker_request.seeker_id')
+                        ->join('blood_type', 'blood_type.id', 'seeker_request.blood_id')
+                        ->join('locations', 'locations.id', 'seekers.location_id')
+                        ->select('seekers.name', 'seekers.email', 'blood_type.group', 'seeker_request.quantity', 'locations.name as location_name','seeker_request.id')
+                        ->where('seekers.id', $row->id)
+                        ->get();
+
+        return view('seeker.list', compact('detail'));
+
+    }
+
+    public function upgrade($id) {
+        SeekerRequest::find($id)->update([
+            'status' => 1,
+        ]);
+        return redirect('/upgradesuccess');
+    }
+
+    public function upgradesuccess() {
+        return view('seeker.success');
+    }
+
 }
 
 

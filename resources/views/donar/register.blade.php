@@ -25,19 +25,39 @@
             <hr class="colorgraph">
             <div class="form-group">
                 <input type="text" name="name" id="name" class="form-control input-lg" placeholder="Name" tabindex="1">
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="form-group">
                 <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="2">
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group">
                         <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="3">
                     </div>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group">
                         <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="4">
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password_confirmation') }}</strong>
+                            </span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -87,6 +107,11 @@
             <div class="form-group">
                 {!! Form::label('image', 'Image:') !!} <span class="text-danger">*</span>
                 {!! Form::file('image', null, ['class' => 'form-control']) !!}
+                @if ($errors->has('image'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('image') }}</strong>
+                    </span>
+                @endif
             </div>
 
             

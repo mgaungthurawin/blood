@@ -10,6 +10,7 @@ use App\Models\BloodType;
 use App\Models\Doner;
 use App\Models\Location;
 use Auth;
+use Illuminate\Validation\Rule;
 
 class DonarController extends Controller
 {
@@ -39,6 +40,14 @@ class DonarController extends Controller
     }
 
     public function register(Request $request) {
+
+        $this->validate($request, [
+            'name' => "required",
+            'email' => "required | email | unique:users,email",
+            'image' => "required",
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
     	$data = $request->all();
         $image = imageUpload($request, 'image', 'images');
 
