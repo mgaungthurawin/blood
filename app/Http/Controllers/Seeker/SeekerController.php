@@ -34,14 +34,13 @@ class SeekerController extends Controller
     	
     	Session::put('quantity', $data['quantity']);
 
-    	$donars = DonerHistory::join('users', 'users.id', 'donar_history.user_id')
-    							->join('doners', 'users.id', 'doners.user_id')
-    							->join('blood_type', 'blood_type.id', 'doners.blood_id')
-    							->join('locations', 'locations.id', 'doners.location_id')
-		    					->where('doners.location_id', $data['location_id'])
-		    					->where('doners.blood_id', $data['blood_id'])
-		    					->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'blood_type.group', 'donar_history.quantity', 'blood_type.id as blood_id')
-    							->get();
+        $donars = DonerHistory::join('users', 'users.id', 'donar_history.user_id')
+                                ->join('doners', 'users.id', 'doners.user_id')
+                                ->join('locations', 'locations.id', 'doners.location_id')
+                                ->where('donar_history.location_id', $data['location_id'])
+                                ->where('doners.blood_id', $data['blood_id'])
+                                ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'donar_history.group', 'donar_history.quantity', 'doners.blood_id as blood_id')
+                                ->get();
     	return view('donarlist', compact('donars', 'userids'));
     }
 
