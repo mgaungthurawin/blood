@@ -19,51 +19,63 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form role="form" method="post" action="{{ url('bloodsearch') }}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{ url('seekerRegister') }}" enctype="multipart/form-data">
             {!! csrf_field() !!}
-            <h2>Please add your information <small>for search bloods.</small></h2>
+            <h2>Please register here</h2>
             <hr class="colorgraph">
             <div class="form-group">
                 <input type="text" name="name" id="name" class="form-control input-lg" placeholder="Name" tabindex="1">
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="form-group">
                 <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="2">
-            </div>
-
-            <div class="form-group">
-                <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Address" tabindex="3">
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
             </div>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group">
-                        <select class="form-control" name="location_id" id="location_id" tabindex="4">
-                            @foreach($locations as $location)
-                                <option value="{{$location->id}}">{{ $location->name }}</option>
-                            @endforeach
-                        </select>
+                        <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="3">
                     </div>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group">
-                        <select class="form-control" name="blood_id" id="blood_id" tabindex="5">
-                                @foreach($bloods as $b)
-                                    <option value="{{$b->id}}">{{ $b->group }}</option>
-                                @endforeach
-                            </select>
-                        </select>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="4">
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password_confirmation') }}</strong>
+                            </span>
+                        @endif
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="number" name="quantity" class="form-control input-lg" placeholder="Quantity" tabindex="6">
+                <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Address" tabindex="5">
+                @if ($errors->has('address'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('address') }}</strong>
+                    </span>
+                @endif
             </div>
             
             <hr class="colorgraph">
             <div class="row">
-                <div class="col-xs-12 col-md-6"></div>
-                <div class="col-xs-12 col-md-6"><input type="submit" value="Search" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+                <div class="col-xs-12 col-md-6"><a href="{{ url('seekerLogin') }}" class="btn btn-primary btn-block btn-lg">Login</a></div>
+                <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-success btn-block btn-lg" tabindex="6"></div>
             </div>
         </form>
     </div>

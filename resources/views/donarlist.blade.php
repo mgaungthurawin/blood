@@ -22,20 +22,20 @@
             {!! csrf_field() !!}
             <h2>Donar List</small></h2>
             <hr class="colorgraph">
-            @foreach($donars as $donar)
-                <div class="col-xs-3 col-sm-offset-2">
-                    <img src="{{ url($donar->image) }}" style="width:100px">
-                    <h5>Name: {{ $donar->user_name }}</h5>
-                    <h5>Email: {{ $donar->email }}</h5>
-                    <h5>Blood Group: {{ $donar->group }}</h5>
-                    <h5>Location: {{ $donar->location_name }}</h5>
-                    <h5>Address: {{ $donar->address }}</h5>
-                    <h5>Phone: {{ $donar->phone }}</h5>
-                    <h5>Quantity: {{ $donar->quantity }}</h5>
-                    <hr class="colorgraph">
-                    <a href="{{ url('bloodreqeust/'. $donar->blood_id .'/' . $donar->location_id ) }}" class="btn btn-success btn-block btn-lg">Apply</a>
-                </div>
-            @endforeach
+              @foreach($donars as $donar)
+                  <div class="col-xs-3 col-sm-offset-2">
+                      <img src="{{ url($donar->image) }}" style="width:100px">
+                      <h5>Name: {{ $donar->user_name }}</h5>
+                      <h5>Email: {{ $donar->email }}</h5>
+                      <h5>Blood Group: {{ $donar->group }}</h5>
+                      <h5>Location: {{ $donar->location_name }}</h5>
+                      <h5>Address: {{ $donar->address }}</h5>
+                      <h5>Phone: {{ $donar->phone }}</h5>
+                      <hr class="colorgraph">
+                      <a href="{{ url('bloodreqeust/'. $donar->blood_id .'/' . $donar->location_id ) }}" class="btn btn-success btn-block btn-lg">Apply</a>
+                  </div>
+              @endforeach
+            
     </div>
 
 </div>

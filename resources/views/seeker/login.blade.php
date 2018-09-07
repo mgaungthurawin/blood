@@ -19,15 +19,32 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form role="form" method="post" action="{{ url('donarRegister') }}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{ url('seekerLogin') }}" enctype="multipart/form-data">
             {!! csrf_field() !!}
-            <h2>Please click your actin</h2>
+            <h2>Please login here</h2>
             <hr class="colorgraph">
+            @include('flash::message')
             <div class="form-group">
-                <div class="col-xs-12 col-md-6"><a href="{{ url('seekerRegister') }}" class="btn btn-primary btn-block btn-lg">Register</a></div>
+                <input type="text" name="email" id="email" class="form-control input-lg" placeholder="Email" tabindex="1">
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="form-group">
-                <div class="col-xs-12 col-md-6"><a href="{{ url('seekerLogin') }}" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="2">
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+            </div>
+            
+            <hr class="colorgraph">
+            <div class="row">
+                <div class="col-xs-12 col-md-6"><a href="{{ url('seekerRegister') }}" class="btn btn-primary btn-block btn-lg">Register</a></div>
+                <div class="col-xs-12 col-md-6"><input type="submit" value="Login" class="btn btn-success btn-block btn-lg" tabindex="4"></div>
             </div>
         </form>
     </div>
@@ -38,6 +55,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#location_id').select2();
+        $('#blood_id').select2();
     });
 </script>
 

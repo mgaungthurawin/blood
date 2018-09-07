@@ -23,3 +23,12 @@ function imageUpload($request, $filename, $folder) {
 	return null;
 }
 
+function checkmonth($to) {
+    $start = new \Carbon\Carbon;
+    $now = $start->now();
+    $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $to);
+    $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $now);
+    $diff_in_days = $to->diffInDays($from);
+    return $diff_in_days;
+}
+

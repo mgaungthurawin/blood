@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.21)
 # Database: blood
-# Generation Time: 2018-08-06 03:29:36 +0000
+# Generation Time: 2018-09-07 01:44:51 +0000
 # ************************************************************
 
 
@@ -40,10 +40,10 @@ LOCK TABLES `blood_type` WRITE;
 
 INSERT INTO `blood_type` (`id`, `group`, `type`, `quantity`, `created_at`, `updated_at`)
 VALUES
-	(1,'A','A-','10','2018-08-05 04:04:32','2018-08-05 04:13:02'),
-	(2,'AB','AB--','21','2018-08-05 04:04:45','2018-08-05 09:12:43'),
-	(3,'B','B-','5','2018-08-05 04:04:57','2018-08-05 04:04:57'),
-	(4,'O','0-','5','2018-08-05 04:05:06','2018-08-05 04:11:55');
+	(1,'A','A-','106','2018-08-05 04:04:32','2018-09-06 14:31:11'),
+	(2,'AB','AB--','100','2018-08-05 04:04:45','2018-08-05 09:12:43'),
+	(3,'B','B-','100','2018-08-05 04:04:57','2018-08-05 04:04:57'),
+	(4,'O','0-','100','2018-08-05 04:05:06','2018-08-05 04:11:55');
 
 /*!40000 ALTER TABLE `blood_type` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -75,9 +75,11 @@ LOCK TABLES `donar_history` WRITE;
 
 INSERT INTO `donar_history` (`id`, `user_id`, `location_id`, `group`, `type`, `quantity`, `created_at`, `updated_at`)
 VALUES
-	(1,2,1,'A','A-',5,'2018-08-05 04:13:02','2018-08-05 04:13:02'),
-	(2,3,1,'AB','AB--',5,'2018-08-05 04:25:11','2018-08-05 04:25:11'),
-	(3,4,1,'AB','AB--',4,'2018-08-05 09:12:36','2018-08-05 09:12:36');
+	(1,2,1,'A','A-',1,'2018-08-05 04:13:02','2018-09-06 14:31:11'),
+	(2,3,1,'AB','AB--',100,'2018-08-05 04:25:11','2018-08-05 04:25:11'),
+	(3,4,1,'AB','AB--',100,'2018-08-05 09:12:36','2018-08-05 09:12:36'),
+	(4,2,1,'A','A-',2,'2018-01-06 00:00:00','2018-09-06 13:30:17'),
+	(5,2,1,'A','A-',3,'2018-09-06 14:20:48','2018-09-06 14:20:48');
 
 /*!40000 ALTER TABLE `donar_history` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -116,7 +118,8 @@ VALUES
 	(1,2,3,2,'No 12 Pyi Thu Kwet Thit (4) Street','09403488850','19-04-1995','images/1533446852.baby.jpg','2018-08-05 04:08:06','2018-08-05 05:27:32'),
 	(2,3,2,1,'Myay Ni Gone, Sanchaung','09769867204','19-04-1982','images/1533442967.baby.jpg','2018-08-05 04:22:47','2018-08-05 04:22:47'),
 	(3,4,2,1,'No 8 Pyi Thu Kwet Thit (3) Street','09403488850','19-04-1992','images/1533460208.bigrubiktube.jpg','2018-08-05 09:09:42','2018-08-05 09:10:08'),
-	(4,5,2,1,'Washington DC Street Block C 85 Update','09403488850','August-29','images/1533461724.bbcake.jpg','2018-08-05 09:35:24','2018-08-05 09:35:24');
+	(4,5,2,1,'Washington DC Street Block C 85 Update','09403488850','August-29','images/1533461724.bbcake.jpg','2018-08-05 09:35:24','2018-08-05 09:35:24'),
+	(5,7,1,1,'No 8 Pyi Thu Kwet Thit (3) Street','09403488850','19-04-1992','images/1534932699.kofi.jpg','2018-08-22 10:11:39','2018-08-22 10:11:39');
 
 /*!40000 ALTER TABLE `doners` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -229,8 +232,10 @@ LOCK TABLES `seeker_request` WRITE;
 
 INSERT INTO `seeker_request` (`id`, `seeker_id`, `blood_id`, `location_id`, `quantity`, `status`, `created_at`, `updated_at`)
 VALUES
-	(1,4,2,1,2,0,'2018-08-05 10:31:53','2018-08-05 10:31:53'),
-	(2,5,2,1,1,0,'2018-08-05 10:35:20','2018-08-05 10:35:20');
+	(1,4,2,1,2,1,'2018-08-05 10:31:53','2018-08-07 15:39:30'),
+	(2,5,2,1,1,1,'2018-08-05 10:35:20','2018-08-07 15:44:52'),
+	(3,7,2,1,1,1,'2018-09-07 00:50:58','2018-09-07 01:06:02'),
+	(4,7,2,1,1,0,'2018-09-07 00:59:35','2018-09-07 00:59:35');
 
 /*!40000 ALTER TABLE `seeker_request` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -245,6 +250,7 @@ CREATE TABLE `seekers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `location_id` int(10) unsigned NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -257,13 +263,15 @@ CREATE TABLE `seekers` (
 LOCK TABLES `seekers` WRITE;
 /*!40000 ALTER TABLE `seekers` DISABLE KEYS */;
 
-INSERT INTO `seekers` (`id`, `name`, `email`, `location_id`, `address`, `created_at`, `updated_at`)
+INSERT INTO `seekers` (`id`, `name`, `email`, `password`, `location_id`, `address`, `created_at`, `updated_at`)
 VALUES
-	(1,'thura','mgaungthurawin@gmail.com',1,'Sanchaung','2018-08-05 07:16:50','2018-08-05 07:16:50'),
-	(2,'test','handsomeman.atrw@gmail.com',1,'Sanchaung','2018-08-05 09:10:35','2018-08-05 09:10:35'),
-	(3,'thura','aung.thura@miaki.co',1,'Sanchaung','2018-08-05 09:37:11','2018-08-05 09:37:11'),
-	(4,'thura','thura@gmail.com',1,'Sanchaung','2018-08-05 09:47:00','2018-08-05 09:47:00'),
-	(5,'Technoland','tech@gmail.com',1,'Sanchaung','2018-08-05 10:34:28','2018-08-05 10:34:28');
+	(1,'thura','mgaungthurawin@gmail.com',NULL,1,'Sanchaung','2018-08-05 07:16:50','2018-08-05 07:16:50'),
+	(2,'test','handsomeman.atrw@gmail.com',NULL,1,'Sanchaung','2018-08-05 09:10:35','2018-08-05 09:10:35'),
+	(3,'thura','aung.thura@miaki.co',NULL,1,'Sanchaung','2018-08-05 09:37:11','2018-08-05 09:37:11'),
+	(4,'thura','thura@gmail.com',NULL,1,'Sanchaung','2018-08-05 09:47:00','2018-08-05 09:47:00'),
+	(5,'Technoland','tech@gmail.com',NULL,1,'Sanchaung','2018-08-05 10:34:28','2018-08-05 10:34:28'),
+	(6,'lol','lol@gmail.com','password',1,'Sanchaung','2018-09-07 00:48:07','2018-09-07 00:48:07'),
+	(7,'lol1','lol1@gmail.com','password',1,'Sanchaung','2018-09-07 00:50:58','2018-09-07 00:50:58');
 
 /*!40000 ALTER TABLE `seekers` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -292,11 +300,12 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `remember_token`, `created_at`, `updated_at`)
 VALUES
-	(1,'thura','mgaungthurawin@gmail.com','$2y$10$azvNf0aCYrRHK2tNPYNnDe4uLtmNgP.fJo50k5DqbGpAPpHHi3VzC',1,'sMNQMCB0aV2YAz6dLIdFlMVXqbZx30b0t7HxZOCdK86ZaUB5Xgwy3Cn9CW0M','2018-08-05 04:03:33','2018-08-05 04:03:33'),
-	(2,'Mr Donar','donar@gmail.com','$2y$10$D5Jy17pRKRVjRwoeA7dO0OLGzz/pxH/hmmJWBBx.j4bOgAEjxDyRi',2,'UackvZrsfsIMHTwuRmzUgI5SKPRaKFEH1H3o3THB2GpTdAZ9vewMQE3OAufK','2018-08-05 04:08:06','2018-08-05 05:27:32'),
+	(1,'thura','mgaungthurawin@gmail.com','$2y$10$azvNf0aCYrRHK2tNPYNnDe4uLtmNgP.fJo50k5DqbGpAPpHHi3VzC',1,'rh79sraHZC5I2XC6i648UTDr07h7pl8nrEE4cuteMYchCG0UuPASYD9EYr6l','2018-08-05 04:03:33','2018-08-05 04:03:33'),
+	(2,'Mr Donar','donar@gmail.com','$2y$10$D5Jy17pRKRVjRwoeA7dO0OLGzz/pxH/hmmJWBBx.j4bOgAEjxDyRi',2,'xKIIE5VrqnFm3UdFVHi40xTX5eQ9z5OL35XbaJW4FKonC2yYDfOpjolK5vLS','2018-08-05 04:08:06','2018-08-05 05:27:32'),
 	(3,'daw hla hla','hlahla@gmail.com','$2y$10$3NhDB4ciV1R9YuDO9xiaruE/vT6r4xOAbNsSvENKxg1YR98pfbyhS',2,'3T1Cluty5Oi7P78rnuu1foUAoaM1OwIWNaoQU2crWZ9u3UI0CXGaCjrSpImG','2018-08-05 04:22:47','2018-08-05 04:22:47'),
 	(4,'test','test@gmail.com','$2y$10$lGwYrjA75dnqdPMUnOJkDOXT/H729iADtp2DXRYera8uMvCtIhJXO',2,'YOIo1srnu7biXGPcq83r1yT7HnwEPACedAEZSrH4FSD3QNWC11i6tnQGlU7u','2018-08-05 09:09:42','2018-08-05 09:09:42'),
-	(5,'test2','test2@gmail.com','$2y$10$WwdfLs/XfXGBiileo7yO5OTEJR81O/uQVGKcaT34HCpbImII5cl46',2,'Uz2sGwnkadTuSWg6pIORXMvoRyoJv3FCskupLJ5F2WtfHMdNwjSTDyySWW1p','2018-08-05 09:35:24','2018-08-05 09:35:24');
+	(5,'test2','test2@gmail.com','$2y$10$WwdfLs/XfXGBiileo7yO5OTEJR81O/uQVGKcaT34HCpbImII5cl46',2,'Uz2sGwnkadTuSWg6pIORXMvoRyoJv3FCskupLJ5F2WtfHMdNwjSTDyySWW1p','2018-08-05 09:35:24','2018-08-05 09:35:24'),
+	(7,'tester','tester@gmail.com','$2y$10$J6u8FgKPiSs4Z1kiWjdQI.TW5qNBB/9UxUa1VFl8zjWngcMh6ghjG',2,'PbqwGb57UuHhDl5o03b9BTLVejGxZ50awunPUk5RVKBe1UyWA5W1T3flCpWg','2018-08-22 10:11:39','2018-08-22 10:11:39');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -23,14 +23,20 @@
             {!! csrf_field() !!}
             <h2>Please add your blood requested email</h2>
             <hr class="colorgraph">
+            @include('flash::message')
             <div class="form-group">
-                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="2">
+                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="1">
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
             </div>
             
             <hr class="colorgraph">
             <div class="row">
                 <div class="col-xs-12 col-md-6"></div>
-                <div class="col-xs-12 col-md-6"><input type="submit" value="Login" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+                <div class="col-xs-12 col-md-6"><input type="submit" value="Login" class="btn btn-primary btn-block btn-lg" tabindex="2"></div>
             </div>
         </form>
     </div>

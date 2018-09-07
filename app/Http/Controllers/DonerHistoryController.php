@@ -9,6 +9,7 @@ use App\Models\Doner;
 use App\Models\Location;
 use Flash;
 use Auth;
+use DB;
 
 class DonerHistoryController extends Controller
 {
@@ -51,6 +52,17 @@ class DonerHistoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $user = Auth::user();
+
+        $history = DonerHistory::where('user_id', $user->id)->orderby('created_at', 'desc')->first();
+        $start = new \Carbon\Carbon;
+        $now = $start->now();
+        $diff = DB::select('SELECT DATEDIFF("'.$now.'", "'.$history->created_at.'") as diff');
+        $datediff = $diff[0]->diff;
+
+        if ($datediff < 120) {
+            return redirect('/sorry');
+        }
 
         $blood = BloodType::find($data['blood_id']);
         BloodType::find($data['blood_id'])->update([
@@ -95,7 +107,8 @@ class DonerHistoryController extends Controller
 
         $blood = BloodType::all();
         $donarhistory = DonerHistory::find($id);
-        return view('donar.history.edit', compact('donarhistory','blood', 'donar'));
+        $locations = Location::all();
+        return view('donar.history.edit', compact('donarhistory','blood', 'donar','locations'));
     }
 
     /**
