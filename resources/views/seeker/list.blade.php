@@ -1,50 +1,105 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<style type="text/css">
-    /* Credit to bootsnipp.com for the css for the color graph */
-    .colorgraph {
-      height: 5px;
-      border-top: 0;
-      background: #c4e17f;
-      border-radius: 5px;
-      background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-      background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-      background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-      background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-    }
-</style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-<div class="row">
-    <div class="col-xs-12">
-            <h2>Donar List</small></h2>
-            <hr class="colorgraph">
-            @foreach($detail as $d)
-                <div class="col-xs-3 col-sm-offset-2">
-                    <h5>Name: {{ $d->name }}</h5>
-                    <h5>Email: {{ $d->email }}</h5>
-                    <h5>Blood Group: {{ $d->group }}</h5>
-                    <h5>Location: {{ $d->location_name }}</h5>
-                    <h5>Address: {{ $d->address }}</h5>
-                    <h5>Quantity: {{ $d->quantity }}</h5>
-                    <hr class="colorgraph">
-                    <a href="{{ url('/upgrade/' . $d->id) }}" class="btn btn-success btn-block btn-lg">Apply</a>
+    <title>Blood Bank</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+            background-color: #74100B !important;
+        }
+
+        .btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
+            background-color: #E0A84B !important;
+        }
+
+    </style>
+  </head>
+<!-- NAVBAR
+================================================== -->
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Blood Bank</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="{{ url('seeker') }}">Seeker</a></li>
+                            <li><a href="{{ url('donar') }}">Donar</a></li>
+                            <li><a href="{{ url('/bloodrequested') }}">Seek Requested</a></li>
+                        </ul>
+                    </div>
                 </div>
-            @endforeach
+            </nav>
+        </div>
     </div>
 
-</div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#location_id').select2();
-        $('#blood_id').select2();
-    });
-</script>
 
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img class="first-slide" src="{{ asset('img/aa.jpg') }}" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="container marketing">
+          <div class="row featurette">
+            <div class="row">
+                <div class="col-xs-12">
+                  <h2>Donar List</small></h2>
+                  <hr class="colorgraph">
+                  @foreach($detail as $d)
+                      <div class="col-xs-3 col-sm-offset-2">
+                          <h5>Name: {{ $d->name }}</h5>
+                          <h5>Email: {{ $d->email }}</h5>
+                          <h5>Blood Group: {{ $d->group }}</h5>
+                          <h5>Location: {{ $d->location_name }}</h5>
+                          <h5>Address: {{ $d->address }}</h5>
+                          <h5>Quantity: {{ $d->quantity }}</h5>
+                          <hr class="colorgraph">
+                          <a href="{{ url('/upgrade/' . $d->id) }}" class="btn btn-primary btn-block btn-lg">Feedback</a>
+                      </div>
+                  @endforeach
+                </div>
+            </div>
+    <hr class="featurette-divider">
+    <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
 
+    </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/holder.min.js') }}"></script>
+    </body>
+</html>

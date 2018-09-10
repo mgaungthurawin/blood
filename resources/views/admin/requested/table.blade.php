@@ -15,7 +15,13 @@
             <td>{!! $requested->address !!}</td>
             <td>{!! $requested->group !!}</td>
             <td>{!! $requested->location_name !!}</td>
-            <td>{!! $requested->status !!}</td>
+            <td>
+                @if($requested->status == 1)
+                    Pending
+                @else
+                    Successful
+                @endif
+            </td>
         </tr>
     @endforeach
     </tbody>
