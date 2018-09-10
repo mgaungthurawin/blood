@@ -39,7 +39,7 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            <li class="active"><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="{{ url('seeker') }}">Seeker</a></li>
                             <li><a href="{{ url('donar') }}">Donar</a></li>
                             <li><a href="{{ url('/bloodrequested') }}">Seek Requested</a></li>
