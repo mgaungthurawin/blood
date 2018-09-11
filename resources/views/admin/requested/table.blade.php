@@ -16,7 +16,7 @@
             <td>{!! $requested->group !!}</td>
             <td>{!! $requested->location_name !!}</td>
             <td>
-                @if($requested->status == 1)
+                @if($requested->status == 0)
                     Pending
                 @else
                     Successful

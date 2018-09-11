@@ -2,17 +2,6 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" href="{!! route('donated.create') !!}">Add New</a>
-        </h1>
-        <div class="row">
-            <form method="GET">
-                <div class="form-group col-md-3">
-                    <input type="text" name="name" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-        </div>
     </section>
     <div class="content">
         <div class="clearfix"></div>

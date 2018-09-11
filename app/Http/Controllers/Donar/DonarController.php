@@ -18,7 +18,7 @@ class DonarController extends Controller
         $user = Auth::user();
         $donar = Doner::where('user_id', $user->id)->first();
         $bloods = BloodType::where('id', $donar->blood_id)->first();
-        $location = Location::find($donar->location_id)->first();
+        $location = Location::where('id', $donar->location_id)->first();
         return view('donar.profile', compact('user', 'donar', 'bloods', 'location'));
     }
 
