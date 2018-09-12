@@ -55,13 +55,16 @@ class DonerHistoryController extends Controller
         $user = Auth::user();
 
         $history = DonerHistory::where('user_id', $user->id)->orderby('created_at', 'desc')->first();
-        $start = new \Carbon\Carbon;
-        $now = $start->now();
-        $diff = DB::select('SELECT DATEDIFF("'.$now.'", "'.$history->created_at.'") as diff');
-        $datediff = $diff[0]->diff;
 
-        if ($datediff < 120) {
-            return redirect('/sorry');
+        if ($history) {
+            $start = new \Carbon\Carbon;
+            $now = $start->now();
+            $diff = DB::select('SELECT DATEDIFF("'.$now.'", "'.$history->created_at.'") as diff');
+            $datediff = $diff[0]->diff;
+
+            if ($datediff < 120) {
+                return redirect('/sorry');
+            }
         }
 
         $blood = BloodType::find($data['blood_id']);
