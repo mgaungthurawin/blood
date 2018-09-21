@@ -43,6 +43,7 @@
                             <li><a href="{{ url('seeker') }}">Seeker</a></li>
                             <li><a href="{{ url('donar') }}">Donar</a></li>
                             <li><a href="{{ url('/bloodrequested') }}">Seek Requested</a></li>
+                            <li><a href="{{ url('/bloodrequire') }}">Blood Require</a></li>
                         </ul>
                     </div>
                 </div>

@@ -68,39 +68,18 @@
     <div class="container marketing">
         <div class="row featurette">
             <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                    <form role="form" method="post" action="{{ url('bloodsearch') }}" enctype="multipart/form-data">
-                        {!! csrf_field() !!}
-                        <h2>Please choose below</h2>
-                        @include('flash::message')
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <select class="form-control" name="location_id" id="location_id" tabindex="4">
-                                        @foreach($locations as $location)
-                                            <option value="{{$location->id}}">{{ $location->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <select class="form-control" name="blood_id" id="blood_id" tabindex="5">
-                                            @foreach($bloods as $b)
-                                                <option value="{{$b->id}}">{{ $b->group }}</option>
-                                            @endforeach
-                                        </select>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-xs-12">
+                    {!! csrf_field() !!}
+                    <h2>Require List</small></h2>
+                    <hr class="colorgraph">
+                      @foreach($requires as $require)
+                          <div class="col-xs-3 col-sm-offset-2">
+                              <p>{{ $require->text }}</p>
+                              <hr class="colorgraph">
+                              <br><br>
+                          </div>
+                      @endforeach
                         
-                        <hr class="colorgraph">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-6"></div>
-                            <div class="col-xs-12 col-md-6"><input type="submit" value="Search" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

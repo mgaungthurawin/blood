@@ -49,6 +49,7 @@ Route::post('/seekerRegister', 'Seeker\SeekerController@register');
 Route::get('/seekerLogin', 'Seeker\SeekerController@seekerlogin');
 Route::post('/seekerLogin', 'Seeker\SeekerController@login');
 
+Route::get('/bloodrequire', 'BloodRequireController@index');
 
 Auth::routes();
 
@@ -59,6 +60,7 @@ Route::resource('bloodtype', 'BloodtypeController');
 Route::resource('location', 'LocationController');
 Route::resource('donated', 'DonatedController');
 Route::resource('requested', 'RequestedController');
+Route::resource('require', 'RequireController');
 
 
 

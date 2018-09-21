@@ -48,6 +48,7 @@
                             <li><a href="{{ url('seeker') }}">Seeker</a></li>
                             <li><a href="{{ url('donar') }}">Donar</a></li>
                             <li><a href="{{ url('/bloodrequested') }}">Seek Requested</a></li>
+                            <li><a href="{{ url('/bloodrequire') }}">Blood Require</a></li>
                         </ul>
                     </div>
                 </div>
@@ -87,12 +88,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="2">
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
+                            <input type="hidden" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="2">
                         </div>
                         
                         <hr class="colorgraph">

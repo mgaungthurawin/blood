@@ -10,6 +10,7 @@ use App\Models\Doner;
 use App\Models\DonerHistory;
 use App\Models\Seeker;
 use App\Models\SeekerRequest;
+use App\Models\BloodRequire;
 use App\User;
 use Session;
 use Flash;
@@ -32,6 +33,21 @@ class SeekerController extends Controller
                         ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'blood_type.group', 'doners.blood_id as blood_id')
                         ->get();
         if (count($donars) == 0) {
+
+            $row = BloodRequire::where('blood_id', $data['blood_id'])
+                        ->where('location_id', $data['location_id'])
+                        ->first();
+
+            if (!$row) {
+                $location = Location::where('id', $data['location_id'])->first();
+                $blood = BloodType::where('id',$data['blood_id'])->first();
+                $text = 'Blood Type ' . $blood->group . ' is require in ' . $location->name;
+                BloodRequire::create([
+                    'blood_id' => $data['blood_id'], 
+                    'location_id' => $data['location_id'],
+                    'text' => $text]);
+            }
+            
             Flash::success('Sorry! We did not have this blood group.');
             return redirect('/seeker');
         }
@@ -67,7 +83,6 @@ class SeekerController extends Controller
             'name' => "required",
             'email' => "required | email | unique:users,email",
             'address' => "required",
-            'password' => 'required|string|min:6|confirmed',
         ]);
         $data = $request->all();
         $data['location_id'] = Session::get('location_id');
@@ -90,11 +105,9 @@ class SeekerController extends Controller
     public function login(Request $request) {
         $this->validate($request, [
             'email' => "required",
-            'password' => 'required',
         ]);
 
         $row = Seeker::where('email', $request->email)
-                    ->where('password', $request->password)
                     ->first();
         if($row) {
             SeekerRequest::create([

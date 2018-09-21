@@ -10,3 +10,6 @@
 <li class="{{ Request::is('requested*') ? 'active' : '' }}">
     <a href="{!! route('requested.index') !!}"><i class="fa fa-edit"></i><span>Seeker</span></a>
 </li>
+<li class="{{ Request::is('require*') ? 'active' : '' }}">
+    <a href="{!! route('require.index') !!}"><i class="fa fa-edit"></i><span>Blood Require</span></a>
+</li>

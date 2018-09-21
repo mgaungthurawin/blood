@@ -48,6 +48,7 @@
                             <li><a href="{{ url('seeker') }}">Seeker</a></li>
                             <li><a href="{{ url('donar') }}">Donar</a></li>
                             <li><a href="{{ url('/bloodrequested') }}">Seek Requested</a></li>
+                            <li><a href="{{ url('/bloodrequire') }}">Blood Require</a></li>
                         </ul>
                     </div>
                 </div>
@@ -151,7 +152,8 @@
                         </div>
 
                         <div class="form-group">
-                            <select id="location_id" name="location_id" class="form-control input-lg" tabindex="10">
+                            <select required id="location_id" name="location_id" class="form-control input-lg" tabindex="10">
+                                <option value="">Select Location</option>
                                 @foreach($locations as $location)
                                     <option value="{{ $location->id }}">{{$location->name}}</option>
                                 @endforeach
