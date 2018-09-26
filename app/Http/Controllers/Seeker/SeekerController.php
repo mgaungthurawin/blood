@@ -37,7 +37,7 @@ class SeekerController extends Controller
                         ->join('locations', 'locations.id', 'doners.location_id')
                         ->where('doners.blood_id', $data['blood_id'])
                         ->where('doners.location_id', $data['location_id'])
-                        ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'doners.blood_id as blood_id', 'donar_history.created_at as donated_date')
+                        ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'doners.blood_id as blood_id', 'donar_history.created_at as donated_date', 'donar_history.group as group')
                         ->get();
         if (count($donars) == 0) {
 
