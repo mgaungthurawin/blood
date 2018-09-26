@@ -135,7 +135,7 @@ class DonerHistoryController extends Controller
 
         DonerHistory::find($id)->update([
             'user_id' => Auth::user()->id,
-            'group' => $blood->group,
+            // 'group' => $blood->group,
             'type' => $blood->type,
             'quantity' => $data['quantity'],
         ]);

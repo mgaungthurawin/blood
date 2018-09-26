@@ -88,7 +88,7 @@ class DonarController extends Controller
 
         Doner::where('user_id', $user_id)
             ->update([
-                'blood_id' => $data['group'],
+                'blood_id' => $data['type'],
                 'location_id' => $data['location_id'],
                 'address' => $data['address'],
                 'phone' => $data['phone'],

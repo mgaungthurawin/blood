@@ -37,7 +37,7 @@ class SeekerController extends Controller
                         ->join('locations', 'locations.id', 'doners.location_id')
                         ->where('doners.blood_id', $data['blood_id'])
                         ->where('doners.location_id', $data['location_id'])
-                        ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'doners.blood_id as blood_id', 'donar_history.created_at as donated_date', 'donar_history.group as group')
+                        ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'doners.blood_id as blood_id', 'donar_history.created_at as donated_date', 'donar_history.type as type')
                         ->get();
         if (count($donars) == 0) {
 
@@ -48,14 +48,14 @@ class SeekerController extends Controller
             if (!$row) {
                 $location = Location::where('id', $data['location_id'])->first();
                 $blood = BloodType::where('id',$data['blood_id'])->first();
-                $text = 'Blood Type ' . $blood->group . ' is require in ' . $location->name;
+                $text = 'Blood Type ' . $blood->type . ' is require in ' . $location->name;
                 BloodRequire::create([
                     'blood_id' => $data['blood_id'], 
                     'location_id' => $data['location_id'],
                     'text' => $text]);
             }
             
-            Flash::success('Sorry! We did not have this blood group.');
+            Flash::success('Sorry! We did not have this blood type.');
             return redirect('/seeker');
         }
 
@@ -146,7 +146,7 @@ class SeekerController extends Controller
         $detail = Seeker::join('seeker_request', 'seekers.id', 'seeker_request.seeker_id')
                         ->join('blood_type', 'blood_type.id', 'seeker_request.blood_id')
                         ->join('locations', 'locations.id', 'seekers.location_id')
-                        ->select('seekers.name', 'seekers.email', 'blood_type.group', 'seeker_request.quantity', 'locations.name as location_name','seeker_request.id')
+                        ->select('seekers.name', 'seekers.email', 'blood_type.type', 'seeker_request.quantity', 'locations.name as location_name','seeker_request.id')
                         ->where('seekers.id', $row->id)
                         ->get();
 

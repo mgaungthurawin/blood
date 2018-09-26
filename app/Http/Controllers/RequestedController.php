@@ -18,7 +18,7 @@ class RequestedController extends Controller
         $requesteds = SeekerRequest::join('seekers', 'seeker_request.seeker_id', 'seekers.id')
                                 ->join('blood_type', 'blood_type.id', 'seeker_request.blood_id')
                                 ->join('locations', 'locations.id', 'seeker_request.location_id')
-                            ->select('seekers.name as seeker_name', 'seekers.email', 'seekers.address', 'blood_type.group', 'seeker_request.quantity', 'seeker_request.status', 'locations.name as location_name', 'seeker_request.status')
+                            ->select('seekers.name as seeker_name', 'seekers.email', 'seekers.address', 'blood_type.type', 'seeker_request.quantity', 'seeker_request.status', 'locations.name as location_name', 'seeker_request.status')
                             ->paginate(10);
         return view('admin.requested.index', compact('requesteds'));
     }

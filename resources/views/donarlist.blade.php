@@ -77,7 +77,7 @@
                               <img src="{{ url($donar->image) }}" style="width:100px">
                               <h5>Name: {{ $donar->user_name }}</h5>
                               <h5>Email: {{ $donar->email }}</h5>
-                              <h5>Blood Group: {{ $donar->group }}</h5>
+                              <h5>Blood Type: {{ $donar->type }}</h5>
                               <h5>Location: {{ $donar->location_name }}</h5>
                               <h5>Address: {{ $donar->address }}</h5>
                               <h5>Phone: {{ $donar->phone }}</h5>

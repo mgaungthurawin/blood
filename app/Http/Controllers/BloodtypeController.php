@@ -17,7 +17,7 @@ class BloodtypeController extends Controller
     public function index(Request $request)
     {
         if ($request->get('name')) {
-            $bloodtypes=BloodType::where('group', $request->get('name'))->paginate(10);
+            $bloodtypes=BloodType::where('type', $request->get('name'))->paginate(10);
             return view('admin.bloodtype.index', compact('bloodtypes'));    
         }
 
