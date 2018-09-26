@@ -81,6 +81,7 @@
                               <h5>Location: {{ $donar->location_name }}</h5>
                               <h5>Address: {{ $donar->address }}</h5>
                               <h5>Phone: {{ $donar->phone }}</h5>
+                              <h5>Last donated date: {{ $donar->donated_date }}</h5>
                               <hr class="colorgraph">
                               <a href="{{ url('bloodreqeust/'. $donar->blood_id .'/' . $donar->location_id ) }}" class="btn btn-primary btn-block btn-lg">Request</a>
                           </div>

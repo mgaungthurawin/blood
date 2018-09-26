@@ -1,8 +1,8 @@
 <div class="form-group col-sm-6">
-    {!! Form::label('group', 'Blood Group:') !!} <span class="text-danger">*</span>
+    {!! Form::label('group', 'Blood Type:') !!} <span class="text-danger">*</span>
     <select class="form-control" name="blood_id">
         @foreach($blood as $b)
-            <option value="{{$b->id}}">{{ $b->group }}</option>
+            <option value="{{$b->id}}">{{ $b->type }}</option>
         @endforeach
     </select>
 </div>

@@ -87,7 +87,7 @@
                                 <div class="form-group">
                                     <select class="form-control" name="blood_id" id="blood_id" tabindex="5">
                                             @foreach($bloods as $b)
-                                                <option value="{{$b->id}}">{{ $b->group }}</option>
+                                                <option value="{{$b->id}}">{{ $b->type }}</option>
                                             @endforeach
                                         </select>
                                     </select>

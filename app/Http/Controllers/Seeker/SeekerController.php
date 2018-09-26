@@ -25,12 +25,19 @@ class SeekerController extends Controller
 
     public function search(Request $request) {
     	$data = $request->all();
-        $donars = User::join('doners', 'doners.user_id', 'users.id')
-                        ->join('blood_type', 'blood_type.id', 'doners.blood_id')
-                        ->join('locations', 'location_id', 'doners.location_id')
-                        ->where('blood_type.id', $data['blood_id'])
-                        ->where('locations.id', $data['location_id'])
-                        ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'blood_type.group', 'doners.blood_id as blood_id')
+        // $donars = User::join('doners', 'doners.user_id', 'users.id')
+        //                 ->join('blood_type', 'blood_type.id', 'doners.blood_id')
+        //                 ->join('locations', 'location_id', 'doners.location_id')
+        //                 ->where('blood_type.id', $data['blood_id'])
+        //                 ->where('doners.location_id', $data['location_id'])
+        //                 ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'blood_type.group', 'doners.blood_id as blood_id')
+        //                 ->get();
+        $donars = Doner::join('donar_history', 'donar_history.user_id', 'doners.user_id')
+                        ->join('users', 'users.id', 'doners.user_id')
+                        ->join('locations', 'locations.id', 'doners.location_id')
+                        ->where('doners.blood_id', $data['blood_id'])
+                        ->where('doners.location_id', $data['location_id'])
+                        ->select('users.id','users.name as user_name', 'users.email', 'doners.address', 'doners.phone', 'doners.image', 'locations.id as location_id', 'locations.name as location_name', 'doners.blood_id as blood_id', 'donar_history.created_at as donated_date')
                         ->get();
         if (count($donars) == 0) {
 

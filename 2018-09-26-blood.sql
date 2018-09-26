@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.21, for osx10.13 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: blood
 -- ------------------------------------------------------
--- Server version	5.7.21
+-- Server version	5.7.23-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `blood_require` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `blood_require` (
 
 LOCK TABLES `blood_require` WRITE;
 /*!40000 ALTER TABLE `blood_require` DISABLE KEYS */;
+INSERT INTO `blood_require` VALUES (1,8,1,'Blood Type O is require in Sanchaung','2018-09-26 02:02:19','2018-09-26 02:02:19'),(2,1,1,'Blood Type A is require in Sanchaung','2018-09-26 02:07:35','2018-09-26 02:07:35');
 /*!40000 ALTER TABLE `blood_require` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +58,7 @@ CREATE TABLE `blood_type` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +67,7 @@ CREATE TABLE `blood_type` (
 
 LOCK TABLES `blood_type` WRITE;
 /*!40000 ALTER TABLE `blood_type` DISABLE KEYS */;
-INSERT INTO `blood_type` VALUES (1,'A','A-','108','2018-08-04 21:34:32','2018-09-11 22:09:56'),(2,'AB','AB--','100','2018-08-04 21:34:45','2018-08-05 02:42:43'),(3,'B','B-','100','2018-08-04 21:34:57','2018-08-04 21:34:57'),(4,'O','0-','100','2018-08-04 21:35:06','2018-08-04 21:41:55');
+INSERT INTO `blood_type` VALUES (1,'A','A +','12','2018-09-26 01:55:56','2018-09-26 02:06:16'),(2,'A','A -','10','2018-09-26 01:56:08','2018-09-26 01:56:08'),(3,'B','B +','12','2018-09-26 01:56:23','2018-09-26 02:31:25'),(4,'B','B -','10','2018-09-26 01:56:33','2018-09-26 01:56:33'),(5,'AB','AB +','12','2018-09-26 01:56:46','2018-09-26 02:33:50'),(6,'AB','AB -','10','2018-09-26 01:56:58','2018-09-26 01:56:58'),(7,'O','O +','11','2018-09-26 01:57:10','2018-09-26 02:01:56'),(8,'O','O -','10','2018-09-26 01:57:25','2018-09-26 01:57:25');
 /*!40000 ALTER TABLE `blood_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +92,7 @@ CREATE TABLE `donar_history` (
   KEY `donar_history_location_id_foreign` (`location_id`),
   CONSTRAINT `donar_history_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE,
   CONSTRAINT `donar_history_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +101,7 @@ CREATE TABLE `donar_history` (
 
 LOCK TABLES `donar_history` WRITE;
 /*!40000 ALTER TABLE `donar_history` DISABLE KEYS */;
-INSERT INTO `donar_history` VALUES (1,2,1,'A','A-',1,'2018-08-04 21:43:02','2018-09-06 08:01:11'),(2,3,1,'AB','AB--',100,'2018-08-04 21:55:11','2018-08-04 21:55:11'),(3,4,1,'AB','AB--',100,'2018-08-05 02:42:36','2018-08-05 02:42:36'),(4,2,1,'A','A-',2,'2018-01-05 17:30:00','2018-09-06 07:00:17'),(5,2,1,'A','A-',3,'2018-09-06 07:50:48','2018-09-06 07:50:48'),(6,8,1,'A','A-',2,'2018-09-11 22:09:56','2018-09-11 22:09:56');
+INSERT INTO `donar_history` VALUES (1,2,5,'O','O +',1,'2018-09-26 02:01:56','2018-09-26 02:01:56'),(2,3,6,'A','A +',2,'2018-09-26 02:06:16','2018-09-26 02:06:16'),(3,4,2,'B','B +',2,'2018-09-26 02:31:26','2018-09-26 02:31:26'),(4,5,7,'AB','AB +',2,'2018-09-26 02:33:50','2018-09-26 02:33:50');
 /*!40000 ALTER TABLE `donar_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +130,7 @@ CREATE TABLE `doners` (
   CONSTRAINT `doners_blood_id_foreign` FOREIGN KEY (`blood_id`) REFERENCES `blood_type` (`id`) ON DELETE CASCADE,
   CONSTRAINT `doners_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE,
   CONSTRAINT `doners_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +139,7 @@ CREATE TABLE `doners` (
 
 LOCK TABLES `doners` WRITE;
 /*!40000 ALTER TABLE `doners` DISABLE KEYS */;
-INSERT INTO `doners` VALUES (1,2,3,2,'No 12 Pyi Thu Kwet Thit (4) Street','09403488850','19-04-1995','images/1533446852.baby.jpg','2018-08-04 21:38:06','2018-09-10 19:51:24'),(2,3,2,1,'Myay Ni Gone, Sanchaung','09769867204','19-04-1982','images/1533442967.baby.jpg','2018-08-04 21:52:47','2018-08-04 21:52:47'),(3,4,2,1,'No 8 Pyi Thu Kwet Thit (3) Street','09403488850','19-04-1992','images/1533460208.bigrubiktube.jpg','2018-08-05 02:39:42','2018-08-05 02:40:08'),(4,5,2,1,'Washington DC Street Block C 85 Update','09403488850','August-29','images/1533461724.bbcake.jpg','2018-08-05 03:05:24','2018-08-05 03:05:24'),(5,7,1,1,'No 8 Pyi Thu Kwet Thit (3) Street','09403488850','19-04-1992','images/1534932699.kofi.jpg','2018-08-22 03:41:39','2018-08-22 03:41:39'),(6,8,1,1,'Sanchaung','0912345','19-04-1992','images/1536727104.profile.jpg','2018-09-11 22:08:24','2018-09-11 22:08:24');
+INSERT INTO `doners` VALUES (1,2,7,5,'Kamayut','09425372234','25-06-1993','images/1537950650.41700059_137338950546905_7869806621004660736_n.jpg','2018-09-26 02:00:50','2018-09-26 02:00:50'),(2,3,1,6,'Hlaing','09799855210','17.10.1966','images/1537950951.bbcake.jpg','2018-09-26 02:05:51','2018-09-26 02:05:51'),(3,4,3,2,'Htauk Kyant','09769867204','21.5.1987','images/1537952450.daddycake.png','2018-09-26 02:30:51','2018-09-26 02:30:51'),(4,5,5,7,'Mayangone','09799855210','21.5.1993','images/1537952598.23754824_895068190653202_7844338103992270586_n.jpg','2018-09-26 02:33:19','2018-09-26 02:33:19');
 /*!40000 ALTER TABLE `doners` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +156,7 @@ CREATE TABLE `locations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +165,7 @@ CREATE TABLE `locations` (
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;
-INSERT INTO `locations` VALUES (1,'Sanchaung','2018-08-04 21:35:16','2018-08-04 21:35:16'),(2,'Kyi Myint Daing','2018-08-04 21:35:24','2018-08-04 21:35:24'),(3,'Alone','2018-08-04 21:35:29','2018-08-04 21:35:29'),(4,'Lanmadaw','2018-08-04 21:35:37','2018-08-04 21:35:37'),(5,'Latha','2018-08-04 21:35:43','2018-08-04 21:35:43'),(6,'Kyauk da dar','2018-08-04 21:35:57','2018-08-04 21:35:57'),(7,'pa pe dan','2018-08-04 21:36:03','2018-08-04 21:36:03'),(8,'Bo Ta Htaung','2018-08-04 21:36:16','2018-08-04 21:36:16'),(9,'Thaketa','2018-08-04 21:36:24','2018-08-04 21:36:24'),(10,'Kamaryut','2018-08-04 21:36:30','2018-08-04 21:36:30'),(11,'Hlaing','2018-08-04 21:36:37','2018-08-04 21:36:37'),(12,'Ma Yan Gone','2018-08-04 21:36:50','2018-08-04 21:36:50');
+INSERT INTO `locations` VALUES (1,'Sanchaung','2018-09-26 01:57:34','2018-09-26 01:57:34'),(2,'Kyi Myint Dine','2018-09-26 01:57:43','2018-09-26 01:57:43'),(3,'Alone','2018-09-26 01:57:50','2018-09-26 01:57:50'),(4,'Latha','2018-09-26 01:57:57','2018-09-26 01:57:57'),(5,'Kamayut','2018-09-26 01:58:05','2018-09-26 01:58:05'),(6,'Hlaing','2018-09-26 01:58:10','2018-09-26 01:58:10'),(7,'Mayangone','2018-09-26 01:58:17','2018-09-26 01:58:17'),(8,'Innsein','2018-09-26 01:58:26','2018-09-26 01:58:26'),(9,'Lanmadaw','2018-09-26 01:58:34','2018-09-26 01:58:34'),(10,'Kyaukdadar','2018-09-26 01:58:42','2018-09-26 01:58:42');
 /*!40000 ALTER TABLE `locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +241,7 @@ CREATE TABLE `seeker_request` (
   CONSTRAINT `seeker_request_blood_id_foreign` FOREIGN KEY (`blood_id`) REFERENCES `blood_type` (`id`) ON DELETE CASCADE,
   CONSTRAINT `seeker_request_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE,
   CONSTRAINT `seeker_request_seeker_id_foreign` FOREIGN KEY (`seeker_id`) REFERENCES `seekers` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +250,6 @@ CREATE TABLE `seeker_request` (
 
 LOCK TABLES `seeker_request` WRITE;
 /*!40000 ALTER TABLE `seeker_request` DISABLE KEYS */;
-INSERT INTO `seeker_request` VALUES (1,4,2,1,2,1,'2018-08-05 04:01:53','2018-08-07 09:09:30'),(2,5,2,1,1,1,'2018-08-05 04:05:20','2018-08-07 09:14:52'),(3,7,2,1,1,1,'2018-09-06 18:20:58','2018-09-06 18:36:02'),(4,7,2,1,1,0,'2018-09-06 18:29:35','2018-09-06 18:29:35'),(5,7,1,1,1,1,'2018-09-10 00:40:34','2018-09-10 01:34:26'),(6,8,2,1,1,0,'2018-09-10 01:01:16','2018-09-10 01:01:16'),(7,9,1,1,1,0,'2018-09-21 01:24:40','2018-09-21 01:24:40'),(8,9,1,1,1,0,'2018-09-21 01:26:39','2018-09-21 01:26:39');
 /*!40000 ALTER TABLE `seeker_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +272,7 @@ CREATE TABLE `seekers` (
   PRIMARY KEY (`id`),
   KEY `seekers_location_id_foreign` (`location_id`),
   CONSTRAINT `seekers_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +281,6 @@ CREATE TABLE `seekers` (
 
 LOCK TABLES `seekers` WRITE;
 /*!40000 ALTER TABLE `seekers` DISABLE KEYS */;
-INSERT INTO `seekers` VALUES (1,'thura','mgaungthurawin@gmail.com',NULL,1,'Sanchaung','2018-08-05 00:46:50','2018-08-05 00:46:50'),(2,'test','handsomeman.atrw@gmail.com',NULL,1,'Sanchaung','2018-08-05 02:40:35','2018-08-05 02:40:35'),(3,'thura','aung.thura@miaki.co',NULL,1,'Sanchaung','2018-08-05 03:07:11','2018-08-05 03:07:11'),(4,'thura','thura@gmail.com',NULL,1,'Sanchaung','2018-08-05 03:17:00','2018-08-05 03:17:00'),(5,'Technoland','tech@gmail.com',NULL,1,'Sanchaung','2018-08-05 04:04:28','2018-08-05 04:04:28'),(6,'lol','lol@gmail.com','password',1,'Sanchaung','2018-09-06 18:18:07','2018-09-06 18:18:07'),(7,'lol1','lol1@gmail.com','password',1,'Sanchaung','2018-09-06 18:20:58','2018-09-06 18:20:58'),(8,'testone','testone@gmail.com','password',1,'Sanchaung','2018-09-10 01:01:16','2018-09-10 01:01:16'),(9,'lol','lol@gmail.com',NULL,1,'Sanchaung','2018-09-21 01:24:40','2018-09-21 01:24:40');
 /*!40000 ALTER TABLE `seekers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,7 +302,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,7 +311,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'thura','mgaungthurawin@gmail.com','$2y$10$azvNf0aCYrRHK2tNPYNnDe4uLtmNgP.fJo50k5DqbGpAPpHHi3VzC',1,'zr97pFKzk4skbsFFatb0HZJk6OYmvqGMhaAPxcP6HlcosDxOkFZAuziZxL8K','2018-08-04 21:33:33','2018-08-04 21:33:33'),(2,'Mr Donar','donar@gmail.com','$2y$10$D5Jy17pRKRVjRwoeA7dO0OLGzz/pxH/hmmJWBBx.j4bOgAEjxDyRi',2,'xKIIE5VrqnFm3UdFVHi40xTX5eQ9z5OL35XbaJW4FKonC2yYDfOpjolK5vLS','2018-08-04 21:38:06','2018-08-04 22:57:32'),(3,'daw hla hla','hlahla@gmail.com','$2y$10$3NhDB4ciV1R9YuDO9xiaruE/vT6r4xOAbNsSvENKxg1YR98pfbyhS',2,'3T1Cluty5Oi7P78rnuu1foUAoaM1OwIWNaoQU2crWZ9u3UI0CXGaCjrSpImG','2018-08-04 21:52:47','2018-08-04 21:52:47'),(4,'test','test@gmail.com','$2y$10$lGwYrjA75dnqdPMUnOJkDOXT/H729iADtp2DXRYera8uMvCtIhJXO',2,'YOIo1srnu7biXGPcq83r1yT7HnwEPACedAEZSrH4FSD3QNWC11i6tnQGlU7u','2018-08-05 02:39:42','2018-08-05 02:39:42'),(5,'test2','test2@gmail.com','$2y$10$WwdfLs/XfXGBiileo7yO5OTEJR81O/uQVGKcaT34HCpbImII5cl46',2,'Uz2sGwnkadTuSWg6pIORXMvoRyoJv3FCskupLJ5F2WtfHMdNwjSTDyySWW1p','2018-08-05 03:05:24','2018-08-05 03:05:24'),(7,'tester','tester@gmail.com','$2y$10$J6u8FgKPiSs4Z1kiWjdQI.TW5qNBB/9UxUa1VFl8zjWngcMh6ghjG',2,'PbqwGb57UuHhDl5o03b9BTLVejGxZ50awunPUk5RVKBe1UyWA5W1T3flCpWg','2018-08-22 03:41:39','2018-08-22 03:41:39'),(8,'donar one','donarone@gmail.com','$2y$10$gCD6B9FQZWcUjazPDEA2luNi0vIWoyeXpFh1UtEBUSUVymDmVPK0q',2,NULL,'2018-09-11 22:08:24','2018-09-11 22:08:24');
+INSERT INTO `users` VALUES (1,'thura','mgaungthurawin@gmail.com','$2y$10$FgZi/kcS95R2yi6qpgjtwe8O1.h45ZPl.3drCxN9vHJaE5VWIV182',1,'q086QlW6i5y1pntbMhlFQYZ5wQA0DqZfV9q8t9HLlP6YmjtnHvbWiqr0nCKp','2018-09-26 01:55:26','2018-09-26 01:55:26'),(2,'Nyo Lay Htike','nyolayhtike@gmail.com','$2y$10$BeIoHYznTFYyN4pNdzEvD.lpiTG/LPxoTosxieb/lBMrMbrSz3ZqW',2,'Vi6Xqq357iignEG98Q47hSFS12MQKwTazeujSBf85W3stxnKnp7ZPYvM1rb0','2018-09-26 02:00:50','2018-09-26 02:00:50'),(3,'Pan Ei','pannei@gmail.com','$2y$10$cOdk9EXfofC0uxGJBQMKQuiJdOohvZlwjdEx9G/oznt2dFVPOU9H2',2,'EiSsu5Zjt2ovcXmnV0jiczLDk5FzlUVIlOXoVaM1d2EkbEDUw3vzYpfhwzSm','2018-09-26 02:05:51','2018-09-26 02:05:51'),(4,'Nga Kyi','ngakyi@gmail.com','$2y$10$rH.UjPizaXneXg0wm2LBO.Ig68Kci6bRghjw8/7De2doCgxZ53eOK',2,'j3EFO4EAgNhLEgCDX9DQ7ziNknlu57jFkeMy31tXspAriNJHDf0hOYuHH2S5','2018-09-26 02:30:50','2018-09-26 02:30:50'),(5,'Khant Khant','khantkhant@gmail.com','$2y$10$pRgU/rGJadNZF8ojKYlmh.tUd.LV8VPhxlMZWBupnBItMsGO9cWa6',2,NULL,'2018-09-26 02:33:18','2018-09-26 02:33:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -325,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-24 16:39:48
+-- Dump completed on 2018-09-26 16:14:00
