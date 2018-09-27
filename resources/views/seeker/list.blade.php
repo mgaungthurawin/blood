@@ -80,7 +80,7 @@
                       <div class="col-xs-3 col-sm-offset-2">
                           <h5>Name: {{ $d->name }}</h5>
                           <h5>Email: {{ $d->email }}</h5>
-                          <h5>Blood Group: {{ $d->group }}</h5>
+                          <h5>Blood Type: {{ $d->type }}</h5>
                           <h5>Location: {{ $d->location_name }}</h5>
                           <h5>Address: {{ $d->address }}</h5>
                           <h5>Quantity: {{ $d->quantity }}</h5>

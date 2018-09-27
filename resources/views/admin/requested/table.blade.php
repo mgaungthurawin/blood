@@ -13,7 +13,7 @@
             <td>{!! $requested->seeker_name !!}</td>
             <td>{!! $requested->email !!}</td>
             <td>{!! $requested->address !!}</td>
-            <td>{!! $requested->group !!}</td>
+            <td>{!! $requested->type !!}</td>
             <td>{!! $requested->location_name !!}</td>
             <td>
                 @if($requested->status == 0)

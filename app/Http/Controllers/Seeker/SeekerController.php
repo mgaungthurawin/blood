@@ -146,7 +146,7 @@ class SeekerController extends Controller
         $detail = Seeker::join('seeker_request', 'seekers.id', 'seeker_request.seeker_id')
                         ->join('blood_type', 'blood_type.id', 'seeker_request.blood_id')
                         ->join('locations', 'locations.id', 'seekers.location_id')
-                        ->select('seekers.name', 'seekers.email', 'blood_type.type', 'seeker_request.quantity', 'locations.name as location_name','seeker_request.id')
+                        ->select('seekers.name', 'seekers.email', 'blood_type.type', 'seeker_request.quantity', 'locations.name as location_name','seeker_request.id', 'seekers.address')
                         ->where('seekers.id', $row->id)
                         ->get();
 

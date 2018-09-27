@@ -120,18 +120,18 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <select class="form-control" name="blood_id" tabindex="5">
-                                        @foreach($blood as $b)
-                                            <option value="{{$b->id}}">{{ $b->group }}</option>
+                                    <select class="form-control" tabindex="5">
+                                        @foreach($groups as $g)
+                                            <option value="">{{ $g->group }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <select class="form-control" tabindex="6">
-                                            @foreach($blood as $b)
-                                                <option value="{{$b->id}}">{{ $b->type }}</option>
+                                    <select class="form-control" name="blood_id" tabindex="6">
+                                            @foreach($types as $t)
+                                                <option value="{{$t->id}}">{{ $t->type }}</option>
                                             @endforeach
                                         </select>
                                     </select>

@@ -11,6 +11,7 @@ use App\Models\Doner;
 use App\Models\Location;
 use Auth;
 use Illuminate\Validation\Rule;
+use DB;
 
 class DonarController extends Controller
 {
@@ -34,9 +35,13 @@ class DonarController extends Controller
 
     public function index() {
     	setusertype(2);
-    	$blood = BloodType::all();
+        $groups = DB::table('blood_type')
+                         ->select('group')
+                         ->groupBy('group')
+                         ->get();
+        $types = BloodType::all();
         $locations = Location::all();
-    	return view('donar.register', compact('blood', 'locations'));
+    	return view('donar.register', compact('groups', 'types', 'locations'));
     }
 
     public function register(Request $request) {
@@ -88,7 +93,7 @@ class DonarController extends Controller
 
         Doner::where('user_id', $user_id)
             ->update([
-                'blood_id' => $data['type'],
+                'blood_id' => $data['group'],
                 'location_id' => $data['location_id'],
                 'address' => $data['address'],
                 'phone' => $data['phone'],
